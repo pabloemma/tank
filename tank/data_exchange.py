@@ -35,6 +35,9 @@ class Exchange(object):
         while True:
             conn,addr = self.mysock.accept() # connection address pair
             print "got connection form ",addr
+            # wait for data
+            data = conn.recv(1024)
+            print "this is the receiver and I got",data
             conn.send('thanks from server')
             conn.close()
             
