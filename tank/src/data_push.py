@@ -28,7 +28,7 @@ class Push(object):
         '''
         self.mysocket = socket.socket()  #use default protocol and stream
         # now connect to the server
-        self.mysocket.connect((ip_server,server_port))
+        self.mysocket.connect((self.tank_server,self.tank_port))
     def PushData(self,databuffer): 
         '''
         pushes data to server
