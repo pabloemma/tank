@@ -28,8 +28,8 @@ class MyLevel(object):
     
     def Measure(self):
         x=self.ser.readline()
-        print x 
         time.sleep(1)
+        return x 
 
  
 if __name__ == '__main__':
