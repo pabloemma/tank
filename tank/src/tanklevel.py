@@ -13,10 +13,10 @@ if __name__ == '__main__':
     device_name = '/dev/ttyAMA0'
 
     
-    MyPush = dp(ip_server,server_port)
+    MyPush = dp.Push(ip_server,server_port)
     MyPush.Connect2Server()
     # now open up the serial port
-    lev = Lv(device_name)
+    lev = Lv.MyLevel(device_name)
     data = lev.Measure()
 
     MyPush.PushData(data)
