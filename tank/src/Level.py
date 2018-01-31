@@ -29,6 +29,7 @@ class MyLevel(object):
     def Measure(self):
         x=self.ser.readline()
         time.sleep(1)
+        type(x)
         return x 
 
  
