@@ -17,9 +17,11 @@ if __name__ == '__main__':
     MyPush.Connect2Server()
     # now open up the serial port
     lev = Lv.MyLevel(device_name)
-    data = lev.Measure()
+    while 1:
+        data = lev.Measure()
 
-    MyPush.PushData(data)
+        MyPush.PushData(data)
+    
     MyPush.CloseConnection()    
     
     
