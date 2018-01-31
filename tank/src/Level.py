@@ -16,6 +16,7 @@ class MyLevel(object):
         '''
         Constructor
         '''
+        print device
         self.ser = serial.Serial(
             port = device,
             baudrate = 9600,
@@ -29,6 +30,7 @@ class MyLevel(object):
     def Measure(self):
         print "I am in measure"
         x=self.ser.readline()
+        print x
         time.sleep(1)
         type(x)
         return x 
