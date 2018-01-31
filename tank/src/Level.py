@@ -27,6 +27,7 @@ class MyLevel(object):
         counter=0
     
     def Measure(self):
+        print "I am in measure"
         x=self.ser.readline()
         time.sleep(1)
         type(x)
