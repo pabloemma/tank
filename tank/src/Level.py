@@ -26,18 +26,23 @@ class MyLevel(object):
             timeout=0)
 
         counter=0
-    
+    def InitFirst(self):
+    	x=self.ser.readline()
+	
     def Measure(self):
+    	
         print "I am in measure"
         x=self.ser.readline()
         print x
         time.sleep(1)
-        type(x)
         return x 
 
  
 if __name__ == '__main__':
     device_name = '/dev/ttyAMA0'
     lev = MyLevel(device_name)
-    lev.Measure()
+    lev.InitFirst()
+    while 1:
+    	lev.Measure()
+
         
