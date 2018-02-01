@@ -32,10 +32,15 @@ class MyLevel(object):
     def Measure(self):
     	
         x=self.ser.readline()
-	print "lenght in Measure",len(x)
-        time.sleep(1)
 	
-        return x 
+	# since we only want to send one value every so often
+	#we always send the first in the buffer, a level word is 6 bytes long including
+	# a carraige return, so we only send the first 5 bytes. However stripping the 0 byte
+	# also ensures that we can easily convert the measurement into an integer
+        
+	time.sleep(5)
+	
+        return x[1:5] 
 
  
 if __name__ == '__main__':
