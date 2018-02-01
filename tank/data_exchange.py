@@ -5,6 +5,8 @@ Created on Jan 28, 2018
 '''
 import socket
 import sys
+import ROOT
+
 from multiprocessing.connection import Client
 class Exchange(object):
     '''
@@ -40,7 +42,8 @@ class Exchange(object):
             data = conn.recv(1024)
             #if not data: break
             if (len(data)>0): 
-                print "this is the receiver and I got",data, len(data)
+                #print "this is the receiver and I got",data, len(data)
+                print data , " mm"
                 conn.send('thanks from server')
             #conn.close()
             
@@ -48,6 +51,12 @@ class Exchange(object):
         self.mysock.close()
         print ' going away'
         sys.exit(0)
+        
+    def MakeHisto(self,title):
+        
+        # myhisto = ROOT.TH1I
+        pass
+    
             
 if __name__ == '__main__':
     tel =Exchange()
