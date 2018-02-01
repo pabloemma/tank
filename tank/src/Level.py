@@ -31,10 +31,10 @@ class MyLevel(object):
 	
     def Measure(self):
     	
-        print "I am in measure"
         x=self.ser.readline()
-        print x
+	print "lenght in Measure",len(x)
         time.sleep(1)
+	
         return x 
 
  

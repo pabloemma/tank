@@ -34,13 +34,18 @@ class Push(object):
         pushes data to server
         '''
         # make sure we know that we transmitted all the bytes
-        print "I am in push data",databuffer
+        #print "I am in push data",databuffer
         temp=len(databuffer.encode('utf-8')) # length in bytes of databuffer, whih needs to be a string
+	if(temp == 0):
+		databuffer =' start of exchange'
+		temp = len(databuffer)
         bytes_sent =self.mysocket.send(databuffer) # returns number of bytes sent
-        
+ 
+        #print "bytes sent", bytes_sent
         if(temp - bytes_sent != 0):
             print "got ",temp," bytes  but sent ",bytes_sent,"  bytes"
         # get ack back from server
+
         response = self.mysocket.recv(1024)
         print response 
         

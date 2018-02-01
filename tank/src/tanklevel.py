@@ -20,7 +20,6 @@ if __name__ == '__main__':
     lev.InitFirst()
     while 1:
     	data = lev.Measure()
-	print data
 	MyPush.PushData(data)
 
     
