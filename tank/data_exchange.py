@@ -39,8 +39,9 @@ class Exchange(object):
             # wait for data
             data = conn.recv(1024)
             #if not data: break
-            print "this is the receiver and I got",data
-            conn.send('thanks from server')
+            if (len(data)>0): 
+                print "this is the receiver and I got",data, len(data)
+                conn.send('thanks from server')
             #conn.close()
             
     def CloseAll(self):
