@@ -32,14 +32,16 @@ class Exchange(object):
         '''
         Here we listen for the Client
         '''
+        conn,addr = self.mysock.accept() # connection address pair
+        print "got connection form ",addr
+
         while True:
-            conn,addr = self.mysock.accept() # connection address pair
-            print "got connection form ",addr
             # wait for data
             data = conn.recv(1024)
+            #if not data: break
             print "this is the receiver and I got",data
             conn.send('thanks from server')
-            conn.close()
+            #conn.close()
             
     def CloseAll(self):
         self.mysock.close()
