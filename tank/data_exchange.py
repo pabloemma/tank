@@ -5,9 +5,16 @@ Created on Jan 28, 2018
 '''
 import socket
 import sys
-import ROOT
+
+import numpy as np
+from matplotlib.lines import Line2D
+import matplotlib.pyplot as plt
+import matplotlib.animation as animation
+import Stripper
 
 from multiprocessing.connection import Client
+
+
 class Exchange(object):
     '''
     classdocs
@@ -18,6 +25,8 @@ class Exchange(object):
         '''
         Constructor
         '''
+        self.fig, self.ax = plt.subplots()
+        self.scope = Stripper.Stripper(self.ax)
         
     def Establish(self):
         '''
@@ -44,9 +53,16 @@ class Exchange(object):
             if (len(data)>0): 
                 #print "this is the receiver and I got",data, len(data)
                 print data , " mm"
-                conn.send('thanks from server')
+                if(len(data)==4):
+                    fl_data = int(data)
+                else:
+                    fl_data = 1
+            conn.send('thanks from server')
+                #self.scope.emitter(int(data))
             #conn.close()
-            
+            ani = animation.FuncAnimation(self.fig, self.scope.update, fl_data, interval=100,
+                              blit=True)
+            plt.show()
     def CloseAll(self):
         self.mysock.close()
         print ' going away'
