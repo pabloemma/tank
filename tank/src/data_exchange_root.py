@@ -52,8 +52,10 @@ class ExchangeRoot(object):
 
 
         print int(time.time()) # strip frac seconds
-        print "got connection form ",addr
-        print " to stop program, press Ctrl/y"
+        print "established connection form ",addr
+        print "**********************************\n\n"
+        print " to stop program, press Ctrl/c \n\n"
+        print "**********************************\n\n"
 
 
 
