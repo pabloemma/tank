@@ -7,9 +7,14 @@ import socket
 import sys
 import time
 
+
 import ROOT as RO
 from array import  array
 from multiprocessing.connection import Client
+import KeyBoardPoller
+
+
+# Collect events until released
 
 
 class ExchangeRoot(object):
@@ -18,12 +23,13 @@ class ExchangeRoot(object):
     '''
 
 
-    def __init__(self):
+    def __init__(self,filename):
         '''
         Constructor
         '''
         # set up ROOT system
         tanktree = RO.TTree("tanktr","level measurement")
+        self.OpenOutput(filename)
         
         
         
@@ -47,35 +53,57 @@ class ExchangeRoot(object):
 
         print int(time.time()) # strip frac seconds
         print "got connection form ",addr
+        print " to stop program, press Ctrl/y"
+
+
+
 
         while True:
+            try:
             # wait for data
-            data = conn.recv(1024)
+                data = conn.recv(1024)
             #if not data: break
-            if (len(data)>0): 
+                if (len(data)>0): 
                 #print "this is the receiver and I got",data, len(data)
-                print int(time.time()) ,"   ",data , " mm"
+                    print int(time.time()) ,"   ",data , " mm"
                 
-                if(len(data)==4):
-                    fl_data = int(data)
-                else:
-                    fl_data = 1
-            conn.send('thanks from server')
+                
+                    if(len(data)==4):
+                        fl_data = int(data)
+                        myline = str(int(time.time()))+','+data +'\n'
+                        print myline
+                        self.output.write(myline)
+                    else:
+                        fl_data = 1
+                    conn.send('thanks from server')
+            except (KeyboardInterrupt, SystemExit):
+                print "got interrupt"
+                self.CloseAll()        
                 #self.scope.emitter(int(data))
             #conn.close()
     def CloseAll(self):
         self.mysock.close()
         print ' going away'
+
+        self.output.close() #close output file
+        
         sys.exit(0)
         
-    def MakeHisto(self,title):
+    def OpenOutput(self,filename):
+        '''
+        open level file n
+        '''
+        try:
+            self.output = open(filename,"a")
+        except:
+            print " problem with out put file"
+            sys.exit(0)
+            
+# help wth keyboards
         
-        # myhisto = ROOT.TH1I
-        pass
-    
             
 if __name__ == '__main__':
-    tel =ExchangeRoot()
+    tel =ExchangeRoot('test.csv')
     tel.Establish()
     tel.Looping()
     tel.CloseAll()
