@@ -26,18 +26,28 @@ class MyLevel(object):
             timeout=0)
 
         counter=0
-    
+    def InitFirst(self):
+    	x=self.ser.readline()
+	
     def Measure(self):
-        print "I am in measure"
+    	
         x=self.ser.readline()
-        print x
-        time.sleep(1)
-        type(x)
-        return x 
+	
+	# since we only want to send one value every so often
+	#we always send the first in the buffer, a level word is 6 bytes long including
+	# a carraige return, so we only send the first 5 bytes. However stripping the 0 byte
+	# also ensures that we can easily convert the measurement into an integer
+        
+	time.sleep(5)
+	
+        return x[1:5] 
 
  
 if __name__ == '__main__':
     device_name = '/dev/ttyAMA0'
     lev = MyLevel(device_name)
-    lev.Measure()
+    lev.InitFirst()
+    while 1:
+    	lev.Measure()
+
         
