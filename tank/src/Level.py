@@ -39,7 +39,8 @@ class MyLevel(object):
 	# also ensures that we can easily convert the measurement into an integer
         
         time.sleep(5)
-	
+        #print x[1:5]
+	   
         return x[1:5] 
 
  
@@ -48,6 +49,6 @@ if __name__ == '__main__':
     lev = MyLevel(device_name)
     lev.InitFirst()
     while 1:
-    	lev.Measure()
+    	print lev.Measure()
 
         
