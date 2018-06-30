@@ -38,7 +38,7 @@ class MyLevel(object):
 	# a carraige return, so we only send the first 5 bytes. However stripping the 0 byte
 	# also ensures that we can easily convert the measurement into an integer
         
-	time.sleep(5)
+        time.sleep(5)
 	
         return x[1:5] 
 
