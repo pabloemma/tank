@@ -11,7 +11,7 @@ import time
 import ROOT as RO
 from array import  array
 from multiprocessing.connection import Client
-import KeyBoardPoller
+#import KeyBoardPoller
 
 
 # Collect events until released
@@ -39,7 +39,7 @@ class ExchangeRoot(object):
         for us that should be 192.168.2.22
         '''
         self.mysock = socket.socket() # create socket
-        myip = '192.168.2.22'
+        myip = '192.168.2.61'
         myport = 5478
         self.mysock.bind(('',myport))
         self.mysock.listen(5) # start listening
@@ -61,9 +61,12 @@ class ExchangeRoot(object):
 
 
         while True:
+            print "loop1"
             try:
+                print "loop2"
             # wait for data
                 data = conn.recv(1024)
+                print "loop3"
             #if not data: break
                 if (len(data)>0): 
                 #print "this is the receiver and I got",data, len(data)
@@ -78,6 +81,8 @@ class ExchangeRoot(object):
                     else:
                         fl_data = 1
                     conn.send('thanks from server')
+                else:
+                    break
             except (KeyboardInterrupt, SystemExit):
                 print "got interrupt"
                 self.CloseAll()        
