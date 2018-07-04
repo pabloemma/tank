@@ -46,7 +46,7 @@ class MyLevel(object):
     	x=self.ser.readline()
 	
     def Measure(self):
-    	
+    	print "in measure"
         x=self.ser.readline()
 	
 	# since we only want to send one value every so often
@@ -55,7 +55,7 @@ class MyLevel(object):
 	# also ensures that we can easily convert the measurement into an integer
         
         time.sleep(1)
-        #print x[1:5]
+	print x[1:5]
 	   
         return x[1:5] 
 	
