@@ -29,17 +29,15 @@ class Push(object):
         '''
         self.mysocket = socket.socket()  #use default protocol and stream
         # now connect to the server
+    print "Esatablishing connection"
         self.mysocket.connect((self.tank_server,self.tank_port))
     def PushData(self,databuffer): 
         '''
         pushes data to server
         '''
         # make sure we know that we transmitted all the bytes
- 	print "data buffer", databuffer
         temp=len(databuffer.encode('utf-8')) # length in bytes of databuffer, whih needs to be a string
-	print "length of databuffer" , temp
         bytes_sent =self.mysocket.send(databuffer) # returns number of bytes sent
-        print "bytes_sent", bytes_sent
         if(temp - bytes_sent != 0):
             print "got ",temp," bytes  but sent ",bytes_sent,"  bytes"
         # get ack back from server

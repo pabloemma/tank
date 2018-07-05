@@ -19,15 +19,10 @@ if __name__ == '__main__':
     # now open up the serial port
     lev = Lv.MyLevel(device_name)
     lev.InitFirst()
-    counter = 0
     while 1:
-    	print "before initial measure"
     	data = lev.Measure()
-	print " after initial measure"
-	MyPush.PushData(data)
-	print counter
-	counter = counter+1
-
+        MyPush.PushData(data)
+ 
     
     MyPush.CloseConnection()    
     

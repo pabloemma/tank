@@ -1,6 +1,9 @@
 '''
 Created on Jan 28, 2018
 
+This is the main program now
+It still oimprts ROOT, but I will evetually get rid of root
+
 @author: klein
 '''
 import socket
@@ -74,10 +77,15 @@ class ExchangeRoot(object):
                 
                 
                     if(len(data)==4):
-                        fl_data = int(data)
-                        myline = str(int(time.time()))+','+data +'\n'
-                        print myline
-                        self.output.write(myline)
+                        #Check if data is an integer, otherwise ignore it
+                        if data.isdigit():
+                            fl_data = int(data)
+                            myline = str(int(time.time()))+','+data +'\n'
+                            print myline
+                            self.output.write(myline)
+
+                        else:
+                            print "error in data block sent , not an integer"
                     else:
                         fl_data = 1
                     conn.send('thanks from server')
