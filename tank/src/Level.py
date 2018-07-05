@@ -32,7 +32,7 @@ class MyLevel(object):
         '''
         Constructor
         '''
-        print device
+        print " we are using ",device
         self.ser = serial.Serial(
             port = device,
             baudrate = 9600,
@@ -55,7 +55,6 @@ class MyLevel(object):
 	# also ensures that we can easily convert the measurement into an integer
         
         time.sleep(1)
-	print x[1:5]
 	   
         return x[1:5] 
 	
