@@ -64,12 +64,9 @@ class ExchangeRoot(object):
 
 
         while True:
-            print "loop1"
             try:
-                print "loop2"
             # wait for data
                 data = conn.recv(1024)
-                print "loop3"
             #if not data: break
                 if (len(data)>0): 
                 #print "this is the receiver and I got",data, len(data)

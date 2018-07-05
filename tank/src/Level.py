@@ -46,7 +46,7 @@ class MyLevel(object):
     	x=self.ser.readline()
 	
     def Measure(self):
-    	print "in measure"
+    	#print "in measure"
         x=self.ser.readline()
 	
 	# since we only want to send one value every so often
@@ -54,7 +54,7 @@ class MyLevel(object):
 	# a carraige return, so we only send the first 5 bytes. However stripping the 0 byte
 	# also ensures that we can easily convert the measurement into an integer
         
-        time.sleep(1)
+        time.sleep(10)
 	   
         return x[1:5] 
 	
