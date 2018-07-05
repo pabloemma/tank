@@ -12,7 +12,7 @@ import time
 import ROOT as RO
 from array import  array
 from multiprocessing.connection import Client
-import KeyBoardPoller
+#import KeyBoardPoller
 
 
 # Collect events until released
@@ -37,10 +37,11 @@ class ExchangeFile(object):
     def Establish(self):
         '''
         establish connection with Client
-        for us that should be 192.168.2.22
+        for us that should be 192.168.2.61
+	
         '''
         self.mysock = socket.socket() # create socket
-        myip = '192.168.2.22'
+        myip = '192.168.2.61'
         myport = 5478
         self.mysock.bind(('',myport))
         self.mysock.listen(5) # start listening
