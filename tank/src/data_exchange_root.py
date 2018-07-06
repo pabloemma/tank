@@ -9,6 +9,8 @@ It still oimprts ROOT, but I will evetually get rid of root
 import socket
 import sys
 import time
+import os
+import datetime
 
 
 import ROOT as RO
@@ -26,14 +28,31 @@ class ExchangeRoot(object):
     '''
 
 
-    def __init__(self,filename):
+    def __init__(self):
         '''
         Constructor
         '''
         # set up ROOT system
-        tanktree = RO.TTree("tanktr","level measurement")
-        self.OpenOutput(filename)
+        #tanktree = RO.TTree("tanktr","level measurement")
         
+        
+    def OpenFile(self):
+        ''' the default filename is going to be the date of the day
+        and it will be in append mode
+        '''
+        a = datetime.datetime.today().strftime('%Y-%m-%d')
+        filename = a+'tank.csv'
+        # if filename exists we open in append mode
+        #otherwise we will create it
+        homedir = os.environ['HOME']
+        filename = homedir + '/tankfiles/'+filename
+        print filename
+        if os.path.isfile(filename):
+            self.output = open(filename,'a')
+        else :
+            self.output = open(filename,'w')
+             
+            
         
         
     def Establish(self):
@@ -42,7 +61,7 @@ class ExchangeRoot(object):
         for us that should be 192.168.2.22
         '''
         self.mysock = socket.socket() # create socket
-        myip = '192.168.2.61'
+        myip = '' #usually leave empty
         myport = 5478
         self.mysock.bind(('',myport))
         self.mysock.listen(5) # start listening
@@ -95,27 +114,19 @@ class ExchangeRoot(object):
             #conn.close()
     def CloseAll(self):
         self.mysock.close()
+        self.output.close()
         print ' going away'
 
-        self.output.close() #close output file
-        
+       
         sys.exit(0)
         
-    def OpenOutput(self,filename):
-        '''
-        open level file n
-        '''
-        try:
-            self.output = open(filename,"a")
-        except:
-            print " problem with out put file"
-            sys.exit(0)
-            
+           
 # help wth keyboards
         
             
 if __name__ == '__main__':
-    tel =ExchangeRoot('test.csv')
+    tel =ExchangeRoot()
+    tel.OpenFile()
     tel.Establish()
     tel.Looping()
     tel.CloseAll()
