@@ -85,9 +85,13 @@ class ExchangeRoot(object):
         while True:
             try:
             # wait for data
-                data = conn.recv(1024)
+                data1 = conn.recv(1024)
             #if not data: break
-                if (len(data)>0): 
+                if (len(data1)>0): 
+                    #strip out ip
+                    temp_data = data1.split(",")
+                    data = temp_data[1]
+                    
                 #print "this is the receiver and I got",data, len(data)
                     #print int(time.time()) ,"   ",data , " mm"
                 
@@ -96,7 +100,7 @@ class ExchangeRoot(object):
                         #Check if data is an integer, otherwise ignore it
                         if data.isdigit():
                             fl_data = int(data)
-                            myline = str(int(time.time()))+','+data +'\n'
+                            myline = str(int(time.time()))+','+temp_data[0]+','+data +'\n'
                             print myline
                             self.output.write(myline)
 
@@ -119,8 +123,14 @@ class ExchangeRoot(object):
 
        
         sys.exit(0)
-        
-           
+
+    def get_ip_address(self):
+        """ get ip address"""
+        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        s.connect(("8.8.8.8", 80))
+        return s.getsockname()[0]
+
+               
 # help wth keyboards
         
             
