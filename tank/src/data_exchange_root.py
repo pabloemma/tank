@@ -70,14 +70,19 @@ class ExchangeRoot(object):
         '''
         Here we listen for the Client
         '''
+        #conn,addr = self.mysock.accept() # connection address pair
         conn,addr = self.mysock.accept() # connection address pair
-
-
         print int(time.time()) # strip frac seconds
         print "established connection form ",addr
         print "**********************************\n\n"
         print " to stop program, press Ctrl/c \n\n"
         print "**********************************\n\n"
+
+
+ # strip frac seconds
+           
+
+
 
 
 
@@ -109,6 +114,7 @@ class ExchangeRoot(object):
                     else:
                         fl_data = 1
                     conn.send('thanks from server')
+                    #self.mysock.close()
                 else:
                     break
             except (KeyboardInterrupt, SystemExit):
