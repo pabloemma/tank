@@ -35,7 +35,15 @@ class Push(object):
         '''
         pushes data to server
         '''
+	
         # make sure we know that we transmitted all the bytes
+	# pack in the last digits of the IP address
+	ip = self.get_ip_address()
+	ip_tup = ip.split(".")
+	ip_temp = ip_tup[3]+','  # add comma as separator
+	
+	databuffer = ip_temp + databuffer
+	
         temp=len(databuffer.encode('utf-8')) # length in bytes of databuffer, whih needs to be a string
         bytes_sent =self.mysocket.send(databuffer) # returns number of bytes sent
         if(temp - bytes_sent != 0):
@@ -44,6 +52,11 @@ class Push(object):
         #response = self.mysocket.recv(1024)
         #print response 
         
+    def get_ip_address(self):
+        """ get ip address"""
+        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        s.connect(("8.8.8.8", 80))
+        return s.getsockname()[0]
         
            
     def CloseConnection(self):  
