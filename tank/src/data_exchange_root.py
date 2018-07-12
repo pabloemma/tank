@@ -64,7 +64,9 @@ class ExchangeRoot(object):
         myip = '' #usually leave empty
         myport = 5478
         self.mysock.bind(('',myport))
-        self.mysock.listen(5) # start listening
+        self.mysock.listen(5)
+        
+         # start listening
         
     def Looping(self):
         '''
