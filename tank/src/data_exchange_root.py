@@ -124,14 +124,7 @@ class ExchangeRoot(object):
                 self.CloseAll()        
                 #self.scope.emitter(int(data))
             #conn.close()
-    def CloseAll(self):
-        self.mysock.close()
-        self.output.close()
-        print ' going away'
-
-       
-        sys.exit(0)
-
+ 
     def get_ip_address(self):
         """ get ip address"""
         s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
