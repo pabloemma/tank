@@ -36,9 +36,9 @@ class ThreadedServer(object):
         filename = homedir + '/tankfiles/'+filename
         print filename
         if os.path.isfile(filename):
-            self.output = open(filename,'a')
+            self.output = open(filename,'a',0)
         else :
-            self.output = open(filename,'w')
+            self.output = open(filename,'w',0)
              
         
 
@@ -98,13 +98,11 @@ class ThreadedServer(object):
                     #self.mysock.close()
                 #else:
                  #   break
-             except (KeyboardInterrupt, SystemExit):
-                print "got interrupt"
-                client.close()
-                self.CloseAll()        
-                return False
-                #self.scope.emitter(int(data))
             #conn.close()
+             except:
+                client.close()
+                return False
+              
     def CloseAll(self):
         self.output.close()
         print ' going away'
