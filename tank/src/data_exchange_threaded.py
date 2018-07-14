@@ -96,8 +96,8 @@ class ThreadedServer(object):
                         fl_data = 1
                     #client.send('thanks from server')
                     #self.mysock.close()
-                #else:
-                 #   break
+                else:
+                    break
             #conn.close()
              except:
                 client.close()
