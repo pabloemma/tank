@@ -2,7 +2,19 @@ import matplotlib.pyplot as plt
 import matplotlib.dates as md
 import csv
 import time
+import sys
+import datetime
+#from scipy.special._mptestutils import Arg
 
+# check for arguments
+for arg in sys.argv[1:]:
+    print arg
+    if (arg == 'today'):
+        date_string=datetime.datetime.today().strftime('%Y-%m-%d')
+    elif("-" in arg): date_string = arg
+        
+    else:
+        date_string ='2018-10-01'
 x1 = []
 y1 = []
 x2 = []
@@ -11,8 +23,8 @@ y2 =[]
 # for date plotting
 n=20
 duration =1000
-
-with open('/home/klein/tankfiles/2018-09-29tank.csv','r') as csvfile:
+filename = '/home/klein/tankfiles/'+date_string+'tank.csv'
+with open(filename,'r') as csvfile:
     plots = csv.reader(csvfile, delimiter=',')
     for row in plots:
         if(int(row[1]) == 61):
