@@ -21,7 +21,7 @@ x2 = []
 y2 =[]
 
 # for date plotting
-n=20
+n=20  
 duration =1000
 filename = '/home/klein/tankfiles/'+date_string+'tank.csv'
 with open(filename,'r') as csvfile:
