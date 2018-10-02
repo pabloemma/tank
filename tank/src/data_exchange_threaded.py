@@ -87,7 +87,7 @@ class ThreadedServer(object):
                         if data.isdigit():
                             fl_data = int(data)
                             myline = str(int(time.time()))+','+temp_data[0]+','+data +'\n'
-                            print myline
+                            #print myline
                             self.output.write(myline)
 
                         else:
