@@ -8,6 +8,7 @@ import sys
 import time
 import os
 import datetime
+from datetime import  date ,timedelta
 
 
 class ThreadedServer(object):
@@ -28,6 +29,7 @@ class ThreadedServer(object):
         ''' the default filename is going to be the date of the day
         and it will be in append mode
         '''
+        self.current_day = date.today()
         a = datetime.datetime.today().strftime('%Y-%m-%d')
         filename = a+'tank.csv'
         # if filename exists we open in append mode
@@ -88,6 +90,12 @@ class ThreadedServer(object):
                             fl_data = int(data)
                             myline = str(int(time.time()))+','+temp_data[0]+','+data +'\n'
                             print myline
+                            # check if we have a new day
+                            if(date.today()>self.current_day):
+                                #we have a new day
+                                self.output.close()
+                                self.OpenFile()
+                                
                             self.output.write(myline)
 
                         else:
