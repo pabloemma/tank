@@ -36,12 +36,24 @@ with open(filename,'r') as csvfile:
 	else:
 		print "Invalid control, wrong IP \n" 
 
-plt.plot(x1,y1, label='Loaded from file!')
+#plt.plot(x1,y1, label='Loaded from file!')
 
-plt.plot(x2,y2,"r-")
-
-plt.xlabel('x')
-plt.ylabel('y')
-plt.title('Interesting Graph\nCheck it out')
+#plt.plot(x2,y2,"r.") # plot with red points
+plt.figure(1)
+plt.plot(x1,y1,'g^',x2,y2,'r.')
+plt.xlabel('unix time')
+plt.ylabel('tank level')
+plt.title('Plot of tanklevels ')
 plt.legend()
 plt.show()
+
+# now do second way of plotting
+plt.figure(2)
+plt.subplot(211)
+plt.plot(x1,y1, 'g^',label='Loaded from file!')
+
+plt.subplot(212)
+plt.plot(x2,y2,"r.") # plot with red points
+plt.grid(True)
+plt.show()
+
