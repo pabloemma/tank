@@ -8,6 +8,9 @@ import numpy as np
 #from scipy.special._mptestutils import Arg
 
 # check for arguments
+if len(sys.argv) == 1: # no date given, use today
+    date_string = dt.datetime.today().strftime('%Y-%m-%d')
+
 for arg in sys.argv[1:]:
     print arg
     if (arg == 'today'):
@@ -73,8 +76,8 @@ ax.xaxis_date()
 #plt.locator_params(axis='x',nbins =5)
 plt.grid(True)
 
-plt.plot(time_date1,y1, 'g^',label='Loaded from file!')
-
+plt.plot(time_date1,y1, 'g^',label='Workshop Tank')
+plt.legend(loc='upper left')
 plt.subplot(212)
 
 # note these adjustments have to happen within the respective figure part
@@ -82,13 +85,14 @@ plt.subplots_adjust(bottom = .1)
 plt.xticks(rotation = 25)
 ax=plt.gca()
 #xfmt = md.DateFormatter('%Y-%m-%d %H:%M:%S')
-xfmt = md.DateFormatter(' %H:%M:%S')
+xfmt = md.DateFormatter('%Y-%m-%d %H:%M:%S')
 ax.xaxis.set_major_formatter(xfmt)
 ax.xaxis_date()
 #plt.gcf().autofmt_xdate()
 
 #plt.locator_params(axis='x',nbins =5)
-plt.plot(time_date2,y2,"r.") # plot with red points
+plt.plot(time_date2,y2,"r.",label='undrground tank') # plot with red points
+plt.legend(loc='upper left')
 plt.grid(True)
 plt.subplots_adjust(hspace=.3)
 plt.show()
