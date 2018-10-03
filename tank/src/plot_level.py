@@ -15,7 +15,7 @@ for arg in sys.argv[1:]:
     elif("-" in arg): date_string = arg
         
     else:
-        date_string = date_string=dt.datetime.today().strftime('%Y-%m-%d')
+        date_string = dt.datetime.today().strftime('%Y-%m-%d')
 x1 = []
 y1 = []
 x2 = []
