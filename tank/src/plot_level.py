@@ -71,9 +71,13 @@ ax.xaxis_date()
 #plt.gcf().autofmt_xdate()
 
 #plt.locator_params(axis='x',nbins =5)
+plt.grid(True)
+
 plt.plot(time_date1,y1, 'g^',label='Loaded from file!')
 
 plt.subplot(212)
+
+# note these adjustments have to happen within the respective figure part
 plt.subplots_adjust(bottom = .1)
 plt.xticks(rotation = 25)
 ax=plt.gca()
