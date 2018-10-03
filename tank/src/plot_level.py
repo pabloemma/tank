@@ -40,13 +40,14 @@ with open(filename,'r') as csvfile:
 #plt.plot(x1,y1, label='Loaded from file!')
 
 #plt.plot(x2,y2,"r.") # plot with red points
-plt.figure(1)
-plt.plot(x1,y1,'g^',x2,y2,'r.')
-plt.xlabel('unix time')
-plt.ylabel('tank level')
-plt.title('Plot of tanklevels ')
-plt.legend()
-plt.show()
+
+#plt.figure(1)
+#plt.plot(x1,y1,'g^',x2,y2,'r.')
+#plt.xlabel('unix time')
+#plt.ylabel('tank level')
+#plt.title('Plot of tanklevels ')
+#plt.legend()
+#plt.show()
 
 
 # now do second way of plotting
